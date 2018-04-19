@@ -25,14 +25,14 @@ public abstract class Page {
         driver.findElement(path).sendKeys(data);
     }
 
-    public void click(By path) {
-        wait.until(ExpectedConditions.elementToBeClickable(path)).click();
+    public void click(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    public void click(WebElement element) {
+    public void click(By path) {
         for (int i = 0; i < 5; i++) {
             try {
-                wait.until(ExpectedConditions.visibilityOf(element)).click();
+                wait.until(ExpectedConditions.visibilityOf(driver.findElement(path))).click();
                 break;
             } catch (StaleElementReferenceException ex) {
             }
