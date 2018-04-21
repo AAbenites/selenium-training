@@ -15,6 +15,10 @@ public class LogHelper {
         logWithCount(msg);
     }
 
+    public static void logMe(int msg) {
+        logWithCount(String.valueOf(msg));
+    }
+
     private static void logWithCount(String message) {
         if (message != null) {
             message = " : " + message;

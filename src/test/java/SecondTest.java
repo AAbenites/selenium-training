@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
+import pages.AdminMainPage;
 
 import java.util.stream.IntStream;
 
@@ -9,7 +10,7 @@ public class SecondTest extends TestBase {
 
     @Test
     public void presenceOfHeaderForAllMenuAndSubMenu() {
-        driver.get("http://localhost/litecart/admin");
+        driver.get(AdminMainPage.adminUrl);
         getPages().adminMainPage.fillLoginData("admin", "admin").submitLogin();
         Assert.assertTrue("has to be authorized", getPages().adminMainPage.isLoggedIn());
         IntStream.range(0, getPages().adminMainPage.getSideBarMenuLinks().size()).forEach(i -> {

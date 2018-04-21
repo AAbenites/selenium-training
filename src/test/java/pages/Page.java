@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public abstract class Page {
@@ -14,6 +15,9 @@ public abstract class Page {
     protected WebDriver driver;
     protected WebDriverWait wait;
     private final int TIMEOUT = 5;
+    public static final String baseUrl = "http://localhost/litecart/";
+    public static final String adminUrl = baseUrl + "admin";
+
 
     public Page(PageManager pages) {
         driver = pages.getWebDriver();
@@ -23,6 +27,12 @@ public abstract class Page {
     public void fillField(By path, String data) {
         driver.findElement(path).clear();
         driver.findElement(path).sendKeys(data);
+    }
+
+    public void uploadImage(By path, String imagePath) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(imagePath).getFile());
+        driver.findElement(path).sendKeys(file.getAbsolutePath());
     }
 
     public void click(WebElement element) {

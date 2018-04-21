@@ -11,6 +11,7 @@ import static util.LogHelper.logMe;
 
 public class AdminMainPage extends Page {
 
+
     public AdminMainPage(PageManager pages) {
         super(pages);
     }
@@ -45,6 +46,11 @@ public class AdminMainPage extends Page {
         return isElementDisplayed(logoutIcon);
     }
 
+    public void loginAsAdminUser() {
+        driver.get(adminUrl);
+        fillLoginData("admin", "admin").submitLogin();
+    }
+
     public List<WebElement> getSideBarMenuLinks() {
         return driver.findElements(By.cssSelector("#app-"));
     }
@@ -70,5 +76,9 @@ public class AdminMainPage extends Page {
     public void clickSideBarLink(WebElement link) {
         logMe(link.getText());
         click(link);
+    }
+
+    public void openCatalogMenu() {
+        click(By.xpath("//a[contains(@href, 'app=catalog')]"));
     }
 }
